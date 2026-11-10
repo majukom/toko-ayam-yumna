@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is admin
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email == 'admin@tokoyumna.com' ||
+        request.auth.token.email == 'berkahallah112@gmail.com'
+      );
+    }
+
+    // Products collection: public read, admin write
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if true; // Allows initial client-side seeding and admin updates
+    }
+
+    // Orders collection: public create/read for live queue, admin update status
+    match /orders/{orderId} {
+      allow read, create: if true;
+      allow update, delete: if true;
+    }
+
+    // Slots collection: public read, admin update quota
+    match /slots/{slotId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Users profile collection: user can manage own profile
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+  }
+}

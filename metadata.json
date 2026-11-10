@@ -1,0 +1,6 @@
+{
+  "name": "Toko Ayam Potong Yumna",
+  "description": "Aplikasi PWA modern dan responsive untuk Toko Ayam Potong Yumna. Spesialis daging ayam segar potong higienis dan telur segar dengan sistem antrean slot jam dan dashboard seller.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
